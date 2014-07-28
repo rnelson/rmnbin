@@ -12,6 +12,13 @@ The main administrative script, `rmnupdate`, creates or updates any symlinks to 
 
 `updategems` will update the gems on a project (via Bundler) in the current directory. If the project is under git, as determined by having a `.git` directory alongside the `Gemfile`, it will also commit the updated `Gemfile.lock`. **Warning:** this will also push any local commits.
 
+### Requirements
+
+Scripts are currently written in the following languages:
+
++ Ruby (**note:** the `rmnupdate` script that creates symlinks is Ruby)
++ Bash
+
 ### Usage
 
 1. Clone the repo somewhere (I use `/rmnbin`)
