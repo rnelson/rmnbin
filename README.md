@@ -19,4 +19,4 @@ The main administrative script, `rmnupdate`, creates or updates any symlinks to 
 
 ### Notes
 
-I haven't implemented a config of any sort yet, so `rmnupdate` has a `INSTDIR` variable that tells it to install under `/usr/local/{bin,sbin}`. I may or may not change that later.
+I haven't implemented a config of any sort yet, so `rmnupdate` has an `INSTDIR` variable that tells it to install under `/usr/local/{bin,sbin}`. I may or may not change that later.
