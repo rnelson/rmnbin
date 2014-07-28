@@ -20,7 +20,7 @@ DIRECTORIES = {
 
 # Only run as root
 if 0 != Process.uid
-	puts 'error: must run updatermnlinks as root'
+	puts 'error: must run rmnupdate as root'
 	exit false
 end
 
