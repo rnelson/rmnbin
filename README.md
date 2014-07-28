@@ -4,11 +4,11 @@ This is a collection of scripts I put in a global path (usually `/usr/local/bin`
 
 ### Scripts
 
-##### rmnupdate
+##### [rmnupdate](https://github.com/rnelson/rmnbin/blob/master/sbin/rmnupdate)
 
 The main administrative script, `rmnupdate`, creates or updates any symlinks to all files under `bin`/`sbin` to the appropriate global directory. Note that this script solely works on the local system; it does not update *rmnbin* from GitHub.
 
-##### updategems
+##### [updategems](https://github.com/rnelson/rmnbin/blob/master/bin/updategems)
 
 `updategems` will update the gems on a project (via Bundler) in the current directory. If the project is under git, as determined by having a `.git` directory alongside the `Gemfile`, it will also commit the updated `Gemfile.lock`. **Warning:** this will also push any local commits.
 
