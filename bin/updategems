@@ -1,0 +1,33 @@
+#!/bin/bash
+#
+# updategems v1.0 - a simple gem updater script
+# Copyright (c) 2014 Ross Nelson
+# Licensed under the zlib license
+# 
+
+
+# Ensure this project is using Bundler
+if [ ! -f Gemfile ]; then
+	echo error: no Gemfile found
+	exit 1
+fi
+
+# Pull the latest code if this is versioned with git. We do
+# this to pull in any changes to Gemfile by other developers.
+if [ -d .git ]; then
+	git pull >/dev/null
+fi
+
+# Remove the lock file if it exists
+rm Gemfile.lock >/dev/null
+
+# Have Bundler update all of our gems
+bundle install
+
+# If we're using git, add the (potentially updated) Gemfile.lock
+# and commit+push the changes
+if [ -d .git ]; then
+	git add Gemfile.lock
+	git commit -m "Updated gems"
+	git push
+fi

@@ -1,0 +1,47 @@
+#!/usr/bin/env ruby
+#
+# rmnupdate v1.0 - create/update symlinks
+# Copyright (c) 2014 Ross Nelson
+# Licensed under the zlib license
+#
+
+BASEDIR = '/rmnbin'
+INSTDIR = '/usr/local'
+DIRECTORIES = {
+  :bin => {
+		'rmn' => "#{BASEDIR}/bin",
+		'sys' => "#{INSTDIR}/bin"
+	},
+	:sbin => {
+		'rmn' => "#{BASEDIR}/sbin",
+		'sys' => "#{INSTDIR}/sbin"
+	}
+}
+
+# Only run as root
+if 0 != Process.uid
+	puts 'error: must run updatermnlinks as root'
+	exit false
+end
+
+# Make sure we have the correct tree
+DIRECTORIES.each do |sym, paths|
+  command = "mkdir -p #{paths['sys']}"
+  system command
+end
+
+DIRECTORIES.each do |sym, paths|
+  Dir.glob("#{paths['rmn']}/*").each do |path|
+    new_path = paths['sys'] << '/' << File.basename(path)
+    
+    # Remove the current link
+    if File.exists? new_path
+      command = "rm #{new_path}"
+      system command
+    end
+    
+    # Create a new link
+    command = "ln -s #{path} #{new_path}"
+    system command
+  end
+end
