@@ -25,7 +25,7 @@ Scripts are currently written in the following languages:
 
 ### Usage
 
-1. Clone the repo somewhere (I use `/rmnbin`)
+1. Clone the repo somewhere (I use `/rmnbin` or `/usr/rmn`)
 2. Run `sbin/rmnupdate` to update all of the links
 
 ### Notes
