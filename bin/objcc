@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 #
 # objcc v1.0 - compile Objective-C code
 # Copyright (c) 2014 Ross Nelson
