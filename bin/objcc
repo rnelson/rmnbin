@@ -1,0 +1,25 @@
+#!/bin/bash
+#
+# objcc v1.0 - compile Objective-C code
+# Copyright (c) 2014 Ross Nelson
+# Licensed under the zlib license
+#
+# This will check for the OS type and call
+# a compiler with appropriate arguments.
+# 
+# The systems I have this on are the following:
+# 
+# OS X (10.9; prereq: Xcode)
+# FreeBSD (PC-BSD; prereqs: gnustep libobjc2)
+# Linux (Raspbian; prereqs: gnustep gnustep-devel gcc clang)
+#
+
+platform=`uname -s`
+if [[ "$unamestr" == 'Linux' ]]; then
+	clang -D_NATIVE_OBJC_EXCEPTIONS -I/usr/include/GNUstep/ -fconstant-string-class=NSConstantString -Xlinker -lgnustep-base $*
+elif [[ "$platform" == 'Darwin' ]]; then
+	clang -lobjc -framework Foundation $*
+elif [[ "$unamestr" == 'FreeBSD' ]]; then
+	. /usr/local/GNUstep/System/Library/Makefiles/GNUstep.sh
+	clang -D_NATIVE_OBJC_EXCEPTIONS -I/usr/local/include -I/usr/local/GNUstep/System/Library/Headers/ -L/usr/local/GNUstep/System/Library/Libraries -fconstant-string-class=NSConstantString -Xlinker -lgnustep-base $*
+fi
