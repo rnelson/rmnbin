@@ -6,7 +6,8 @@
 #
 
 def whereami
-  filename = File.readlink __FILE__ if File.symlink? __FILE__
+  filename = __FILE__
+  filename = File.readlink filename if File.symlink? filename
   parent_folder = File.expand_path(File.join filename, '../..')
   parent_folder
 end
