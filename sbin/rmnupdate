@@ -5,7 +5,13 @@
 # Licensed under the zlib license
 #
 
-BASEDIR = '/rmnbin'
+def whereami
+  filename = File.readlink __FILE__ if File.symlink? __FILE__
+  parent_folder = File.expand_path(File.join filename, '../..')
+  parent_folder
+end
+
+BASEDIR = whereami
 INSTDIR = '/usr/local'
 DIRECTORIES = [ 'bin', 'sbin' ]
 
